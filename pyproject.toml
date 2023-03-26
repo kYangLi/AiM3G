@@ -1,0 +1,17 @@
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "aim3g"
+author = "Yang Li"
+description = "The AIRSS + M3GNet structure searching python package."
+version = "0.1.0"
+dependencies = [
+    "ase >=3.22.1",
+    "m3gnet >=0.2.4",
+    "numpy >=1.23.5",
+    "prettytable >=3.6.0",
+    "pymatgen >=2023.3.10",
+    "tqdm >=4.65.0",
+]

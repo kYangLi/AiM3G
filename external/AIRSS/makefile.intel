@@ -1,0 +1,31 @@
+# Notice:
+#   If you intend to use the `ifort` compiler for building the AIRSS-buildcell 
+#     binary, which is generally not recommended, you will need to make minor
+#     modifications to the source code. Specifically, you should uncomment lines
+#     33-36 in the `./src/common/rng.f90` file.
+#
+
+FC=ifort
+FFLAGS=-O1 -g
+
+LD=$(FC)
+
+export
+
+all: buildcell install neat
+
+buildcell:
+	(cd src/buildcell/src; make)
+
+install:
+	(rm -f bin/buildcell && cp src/buildcell/src/buildcell bin/buildcell)
+	@echo
+	@echo 'Check: '$(PWD)'/bin/buildcell'
+
+neat:
+	(cd src/buildcell/src; make clean)
+	@echo
+	@echo 'Check: '$(PWD)'/bin/buildcell'
+
+clean: neat
+	(rm -f bin/buildcell)

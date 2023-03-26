@@ -1,0 +1,7 @@
+*.init.vasp
+*.m3g.vasp
+.vscode
+__pycache__
+airss/bin/buildcell
+res.structure-groups-info.json
+group_*.list

@@ -1,0 +1,30 @@
+FC=gfortran
+FFLAGS=-Og -g
+
+LD=$(FC)
+
+GCC_VER_GTE46 := $(shell echo `$(FC) -dumpfullversion -dumpversion | cut -f1-2 -d.` \>= 4.6 | bc )
+ifeq ($(GCC_VER_GTE46),0)
+DFLAGS=-DCOMPAT
+endif
+
+export
+
+
+all: buildcell install neat
+
+buildcell:
+	(cd src/buildcell/src; make)
+
+install:
+	(rm -f bin/buildcell && cp src/buildcell/src/buildcell bin/buildcell)
+	@echo
+	@echo 'Check: '$(PWD)'/bin/buildcell'
+
+neat:
+	(cd src/buildcell/src; make clean)
+	@echo
+	@echo 'Check: '$(PWD)'/bin/buildcell'
+
+clean: neat
+	(rm -f bin/buildcell)
